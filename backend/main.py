@@ -14,8 +14,8 @@ Base.metadata.create_all(bind=engine)
 # ── FastAPI app ───────────────────────────────────────────────────────────────
 app = FastAPI(
     title="RAG PDF Chatbot API",
-    description="Upload PDFs and chat with them using AI — powered by Google Gemini + pgvector",
-    version="1.0.0",
+    description="Upload PDFs and chat with them using AI — powered by Google Gemini, Groq, and LanceDB",
+    version="1.1.0",
     docs_url="/docs",
     redoc_url="/redoc",
 )

@@ -91,7 +91,7 @@ def chunk_pages(
 
 def get_embedding(text: str, task_type: str = "retrieval_document") -> List[float]:
     """
-    Embed a piece of text using Google text-embedding-004 (768 dims).
+    Embed a piece of text using Google gemini-embedding-001 (768 dims).
 
     task_type:
         "retrieval_document" — for PDF chunks stored in the DB
