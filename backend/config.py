@@ -6,7 +6,9 @@ load_dotenv()
 DATABASE_URL: str = os.getenv(
     "DATABASE_URL", "postgresql+psycopg://postgres:password@localhost:5432/ragpdf"
 )
-if DATABASE_URL.startswith("postgresql://"):
+if DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql+psycopg://", 1)
+elif DATABASE_URL.startswith("postgresql://"):
     DATABASE_URL = DATABASE_URL.replace("postgresql://", "postgresql+psycopg://", 1)
 GOOGLE_API_KEY: str = os.getenv("GOOGLE_API_KEY", "")
 GROQ_API_KEY: str = os.getenv("GROQ_API_KEY", "")
