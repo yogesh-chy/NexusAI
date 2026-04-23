@@ -44,18 +44,16 @@ export default function SignupForm({
 
       setSuccess(true);
       
-      if (onSuccess) {
-        onSuccess();
-      } else {
-        // Default behavior: redirect to login after 2 seconds
-        setTimeout(() => {
-          if (onSwitchToLogin) {
-            onSwitchToLogin();
-          } else {
-            router.push("/login");
-          }
-        }, 2000);
-      }
+      // Always wait 2 seconds so the user can see the success message
+      setTimeout(() => {
+        if (onSuccess) {
+          onSuccess();
+        } else if (onSwitchToLogin) {
+          onSwitchToLogin();
+        } else {
+          router.push("/login");
+        }
+      }, 2000);
     } catch (err: any) {
       setError(err.message);
     } finally {
