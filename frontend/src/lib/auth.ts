@@ -35,7 +35,7 @@ export const isAuthenticated = () => {
   }
 };
 
-export const getAuthHeader = () => {
+export const getAuthHeader = (): HeadersInit => {
   const token = getToken();
   return token ? { Authorization: `Bearer ${token}` } : {};
 };
