@@ -222,7 +222,7 @@ export default function ChatPage() {
                     </svg>
                   </div>
                 )}
-                <div className="flex flex-col max-w-[75%] gap-2">
+                <div className="flex flex-col max-w-[75%] gap-0.5">
                   <div
                     className={`px-4 py-3 rounded-2xl text-sm leading-relaxed relative group/bubble ${
                       msg.role === "user"
@@ -258,7 +258,7 @@ export default function ChatPage() {
                           }
                         }}
                         id={`copy-${i}`}
-                        className="p-1.5 rounded-md bg-neutral-800/50 hover:bg-neutral-700 text-white/50 hover:text-white transition-all duration-200 cursor-pointer border border-white/5 shadow-sm"
+                        className="p-1.5 rounded-lg text-foreground hover:bg-white/5 transition-all duration-200 cursor-pointer"
                         title="Copy message"
                       >
                         <svg

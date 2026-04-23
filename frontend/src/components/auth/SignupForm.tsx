@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { getApiUrl } from "@/lib/api";
 
 interface SignupFormProps {
@@ -20,7 +21,9 @@ export default function SignupForm({
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,8 +42,19 @@ export default function SignupForm({
         throw new Error(data.detail || "Registration failed");
       }
 
+      setSuccess(true);
+      
       if (onSuccess) {
         onSuccess();
+      } else {
+        // Default behavior: redirect to login after 2 seconds
+        setTimeout(() => {
+          if (onSwitchToLogin) {
+            onSwitchToLogin();
+          } else {
+            router.push("/login");
+          }
+        }, 2000);
       }
     } catch (err: any) {
       setError(err.message);
@@ -75,6 +89,12 @@ export default function SignupForm({
       {error && (
         <div className="mb-4 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 text-sm text-center font-medium">
           {error}
+        </div>
+      )}
+      
+      {success && (
+        <div className="mb-4 p-4 rounded-xl bg-green-500/10 border border-green-500/20 text-green-500 text-sm text-center font-medium animate-pulse">
+          Account created successfully! Redirecting to login...
         </div>
       )}
 
@@ -141,10 +161,10 @@ export default function SignupForm({
 
         <button
           type="submit"
-          disabled={loading}
+          disabled={loading || success}
           className="w-full py-3 rounded-xl bg-primary text-white font-black text-base hover:bg-primary/90 transition-all duration-200 disabled:opacity-50 shadow-xl shadow-primary/20 mt-1 cursor-pointer"
         >
-          {loading ? "Creating Account..." : "Create Account"}
+          {loading ? "Creating Account..." : success ? "Account Created!" : "Create Account"}
         </button>
       </form>
 

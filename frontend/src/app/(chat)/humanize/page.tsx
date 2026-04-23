@@ -240,7 +240,7 @@ export default function HumanizePage() {
                     </svg>
                   </div>
                 )}
-                <div className="flex flex-col max-w-[75%] gap-2">
+                <div className="flex flex-col max-w-[75%] gap-0.5">
                   <div className={`px-4 py-3 rounded-2xl text-sm leading-relaxed relative group/bubble ${
                     msg.role === "user"
                       ? "bg-accent text-white shadow-lg shadow-accent/20 rounded-br-sm"
@@ -255,28 +255,6 @@ export default function HumanizePage() {
                         </div>
                       ))}
                     </div>
-
-                    {msg.score && (
-                      <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className="flex flex-col">
-                            <span className="text-[10px] uppercase tracking-wider text-muted-foreground/50 font-bold mb-1">Human Score</span>
-                            <div className="flex items-center gap-1.5">
-                              <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.4)]" />
-                              <span className="text-sm font-black text-green-400">{msg.score.human_score}%</span>
-                            </div>
-                          </div>
-                          <div className="h-6 w-px bg-white/5 mx-2" />
-                          <div className="flex flex-col">
-                            <span className="text-[10px] uppercase tracking-wider text-muted-foreground/50 font-bold mb-1">AI Score</span>
-                            <div className="flex items-center gap-1.5">
-                              <div className="w-2 h-2 rounded-full bg-red-500/50" />
-                              <span className="text-sm font-black text-red-400/70">{msg.score.ai_score}%</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    )}
                   </div>
 
                   {/* Copy Button - Outside & Below Bubble */}
@@ -294,7 +272,7 @@ export default function HumanizePage() {
                           }
                         }}
                         id={`copy-${i}`}
-                        className="p-1.5 rounded-md bg-neutral-800/50 hover:bg-neutral-700 text-white/50 hover:text-white transition-all duration-200 cursor-pointer border border-white/5 shadow-sm"
+                        className="p-1.5 rounded-lg text-foreground hover:bg-white/5 transition-all duration-200 cursor-pointer"
                         title="Copy message"
                       >
                         <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
